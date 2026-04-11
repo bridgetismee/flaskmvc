@@ -1,22 +1,22 @@
-
-async function getUserData(){
-    const response = await fetch('/api/users');
+async function getTodoData(){
+    const response = await fetch('/api/todos');
     return response.json();
 }
 
-function loadTable(users){
+function loadTable(todos){
     const table = document.querySelector('#result');
-    for(let user of users){
+    for(let todo of todos){
         table.innerHTML += `<tr>
-            <td>${user.id}</td>
-            <td>${user.username}</td>
+            <td>${todo.id}</td>
+            <td>${todo.text}</td>
+            <td>${todo.done}</td>
         </tr>`;
     }
 }
 
 async function main(){
-    const users = await getUserData();
-    loadTable(users);
+    const todos = await getTodoData();
+    loadTable(todos);
 }
 
 main();
