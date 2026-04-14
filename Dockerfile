@@ -6,12 +6,10 @@ RUN apt-get update \
 
 COPY ./pyproject.toml ./
 COPY ./README.md ./
-COPY ./app /app
+COPY ./app /app/app
 
 RUN pip install .
 
 WORKDIR /app
 
-ENTRYPOINT ["python"]
-
-CMD ["-m", "app.main"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "10000"]
